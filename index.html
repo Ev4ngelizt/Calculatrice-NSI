@@ -7,6 +7,102 @@
     <link rel="stylesheet" href="style.css">
   
     <title> Calculator</title>
+  
+  <style>*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body, html {
+    height: 100%;
+}
+body {
+
+    background: #120f1f;
+    display: grid;
+    place-items: center;
+}
+
+.calculatrice {
+    width: 330px;
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: -3px -3px 7px #221d3b,
+                        3px 3px 5px #00000070;
+}
+.calculatrice .resultat {
+    height: 60px;
+    width: 100%;
+    background: #bfd6e1;
+    box-shadow: inset -3px -3px 7px #221d3b,
+                         inset 3px 3px 5px #00000070;
+
+}
+.calculatrice .resultat input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    padding: 1rem;
+    color: #847f97;
+    font-size: 20px;
+    text-align: right;
+    border: none;
+    outline: none;
+    box-shadow: inset -1px -1px 7px #221d3b,
+    inset 1px 1px 5px #00000070;
+    font-weight: 500;
+
+}
+.calculatrice .buttons {
+    padding: 30px 0 0 0;
+    text-align: center;
+}
+.calculatrice input[type=button]{
+    height: 56px;
+    width: 56px;
+    margin: 4px;
+    font-size: 23px;
+    background: #120f1f;
+    color: #f1f1f1;
+    border: none;
+    outline: none;
+    box-shadow:  -2px -2px 7px #221d3b,
+    2px 2px 5px #00000070;
+    cursor: pointer;
+}
+.calculatrice input[type=button]:active{
+    box-shadow: inset -2px -2px 7px #221d3b,
+    inset 2px 2px 5px #00000070;
+
+}
+.equal{
+    	width: 100%!important;
+    font-size: 18px!important;
+    }
+
+.infos {
+    color: #eb9595;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 9px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 1rem;
+    font-weight: 400;
+
+}
+    
+input[type=button] {
+    transition: transform .1s;
+}
+input[type=button]:hover{
+    transform: scale(1.1);
+}
+    
+    
+</style>
 </head>
 <body>
 
@@ -21,6 +117,18 @@
                 <input type="text" name="fenetre" id="fenetre">
             </div>
             <div class="buttons">
+              <div class="row">
+                <input class="reset" type="button" value="Del" name="reset" onclick="suppr()">
+                    <input type="button" value="(" name="lpar" onclick="val(lpar.value)">
+                    <input type="button" value=")" name="rpar" onclick="val(rpar.value)">
+                  	<input type="button" value="⌫ " name="rm" onclick="remove()">
+                </div>
+              <div class="row">
+                  <input type="button" value="shift" name="shift" onclick="">	 
+                  <input type="button" value="Math.cos" name="cos" onclick="val(cos.value)">
+                  	<input type="button" value="Math.sin" name="sin" onclick="val(cos.value)">
+                  	<input type="button" value="Math.tan" name="tan" onclick="val(cos.value)">
+              </div>
                 <div class="row">
                     <input type="button" value="7" name="v7" onclick="val(v7.value)">
                     <input type="button" value="8" name="v8" onclick="val(v8.value)">
@@ -40,18 +148,45 @@
                     <input type="button" value="*" name="mult" onclick="val(mult.value)">
                 </div>
                 <div class="row">
+                  	<input type="button" value="a" name="va" onclick="">
                     <input type="button" value="0" name="v0" onclick="val(v0.value)">
                     <input type="button" value="." name="dot" onclick="val(dot.value)">
                     <input type="button" value="/" name="div" onclick="val(div.value)">
-                    <input type="button" value="=" name="egale" onclick="calcule()">
                 </div>
-                <input class="reset" type="button" value="Suppr" name="reset" onclick="suppr()">
+               <input class="equal" type="button" value="=" name="egale" onclick="calcule()">
             </div>
         </form>
     </div>
 
 
 
-    <script src="app.js"></script>
+    <script>const info = document.querySelector('.infos')
+
+const allBtns = document.querySelectorAll('input[type=button]')
+
+function val(resultat){
+    form.fenetre.value = form.fenetre.value + resultat
+}
+
+function calcule(){
+    if(form.fenetre.value == ""){
+        info.innerText = `Veuillez écrire une opération`;
+        allBtns.forEach(btn => {
+            btn.addEventListener('click', function(){
+                info.innerText = ""
+            })
+        })
+    }else {
+        form.fenetre.value = eval(form.fenetre.value);
+        info.innerText = ""
+    }
+}
+function remove(){
+		form.fenetre.value = form.fenetre.value.slice(0, -1);
+}
+function suppr(){
+    form.fenetre.value = "";
+}
+</script>
 </body>
 </html>
