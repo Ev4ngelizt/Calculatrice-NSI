@@ -17,16 +17,16 @@ body {
 
 .calculatrice {
     width: 330px;
-    background: #120f1f;
+    background: #ffffff;
     padding: 40px 30px;
     border-radius: 10px;
     box-shadow: -3px -3px 7px #221d3b,
                         3px 3px 5px #00000070;
 }
 .calculatrice .resultat {
-    height: 60px;
+    height: 100px;
     width: 100%;
-    background: #120f1f;
+    background: #bfd6e1;
     box-shadow: inset -3px -3px 7px #221d3b,
                          inset 3px 3px 5px #00000070;
 
@@ -50,9 +50,8 @@ body {
     padding: 30px 0 0 0;
     text-align: center;
 }
-
 .calculatrice input[type=button]{
-    height: 56px;
+    height: 42px;
     width: 56px;
     margin: 4px;
     font-size: 23px;
@@ -69,12 +68,10 @@ body {
     inset 2px 2px 5px #00000070;
 
 }
-
- .reset {
-    width: 100%!important;
+.equal{
+    	width: 100%!important;
     font-size: 18px!important;
-}
-
+    }
 
 .infos {
     color: #eb9595;
@@ -84,5 +81,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 1rem;
     font-weight: 400;
+
+}
     
+input[type=button] {
+    transition: transform .1s;
+}
+input[type=button]:hover{
+    transform: scale(1.1);
 }
